@@ -85,6 +85,48 @@ public class DBConnectionManager {
 		return con;
 	}
 	
+	public Connection getConnectionMultiple(JsonNode dbConnectionDetails) {
+		
+		logger.info("Entering " + CLASS_NAME);
+		Connection con1 = null;
+		try {
+
+			Class.forName("org.postgresql.Driver");
+			//"jdbc:postgresql://pellefant-01.db.elephantsql.com:5432/udwzgumv","udwzgumv","ZvRQU0t6v7byKb7C2G5Cv94V8wO1nEGI"
+	        //con = DriverManager.getConnection("jdbc:postgresql://pellefant-01.db.elephantsql.com:5432/udwzgumv","udwzgumv","ZvRQU0t6v7byKb7C2G5Cv94V8wO1nEGI");
+	       
+	        String db1_url = dbConnectionDetails.get("db1_url").asText().trim();
+	        String db1_username  = dbConnectionDetails.get("db1_username").asText().trim();
+	        String db1_password = dbConnectionDetails.get("db1_password").asText().trim();
+	        
+			con = DriverManager.getConnection(db1_url,db1_username,db1_password);
+	        
+			if (con != null) {
+				logger.info("Connection 1 created Successfully !");
+				System.out.println("Connection 1 created Successfully !");
+			} 
+			
+			String db2_url = dbConnectionDetails.get("db2_url").asText().trim();
+	        String db2_username  = dbConnectionDetails.get("db2_username").asText().trim();
+	        String db2_password = dbConnectionDetails.get("db2_password").asText().trim();
+	        
+			con1 = DriverManager.getConnection(db2_url,db2_username,db2_password);
+	        
+			if (con1 != null) {
+				logger.info("Connection 2 created Successfully !");
+				System.out.println("Connection 2 created Successfully !");
+			} 
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			logger.error(e.getMessage());
+		} catch (Exception e) {
+			e.printStackTrace();
+			logger.error(e.getMessage());
+		} 
+		return con;
+	}
+	
 	/*public static void main(String args[]) {
 		DBConnectionManager dbc = new DBConnectionManager();
 		dbc.getConnection();

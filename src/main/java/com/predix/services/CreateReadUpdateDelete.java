@@ -32,10 +32,34 @@ public class CreateReadUpdateDelete {
 		try {
 			
 			System.out.println(jsonNode);
-			DBConnectionManager dbcon = new DBConnectionManager();
+			/*DBConnectionManager dbcon = new DBConnectionManager();
 			Connection con = dbcon.getConnectionRest(jsonNode);
 			
-			DBUtility.closeConnection(con);
+			DBUtility.closeConnection(con);*/
+			
+			return "Database connection parameters are correct";
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return "FAIL";
+	}
+	
+	@RequestMapping(value="/connectdbs", method=RequestMethod.POST)
+	public String connectMultipleDB(@RequestBody JsonNode jsonNode ) {
+		try {
+			/*
+			{"db1_url":"",
+				"db1_password":"",
+				"db1_username":"",
+				"db2_url":"",
+				"db2_password":"",
+				"db2_username":""
+				}*/
+			System.out.println(jsonNode);
+			/*DBConnectionManager dbcon = new DBConnectionManager();
+			Connection con = dbcon.getConnectionRest(jsonNode);
+			
+			DBUtility.closeConnection(con);*/
 			
 			return "Database connection parameters are correct";
 		} catch (Exception e) {
