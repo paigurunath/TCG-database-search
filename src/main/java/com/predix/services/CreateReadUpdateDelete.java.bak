@@ -22,7 +22,6 @@ import com.predix.model.Company;
 @EnableAutoConfiguration
 public class CreateReadUpdateDelete {
 
-//test
 	@RequestMapping("/")
 	String home() {
 		return "Application to index data from database to searchly";
@@ -48,8 +47,6 @@ public class CreateReadUpdateDelete {
 	@RequestMapping(value="/connectdbs", method=RequestMethod.POST)
 	public String connectMultipleDB(@RequestBody JsonNode jsonNode ) {
 		try {
-			//commentting for test_branch
-			//created a branch from test_comment, to test_comment1
 			/*
 			{"db1_url":"",
 				"db1_password":"",
